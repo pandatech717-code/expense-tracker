@@ -282,6 +282,20 @@ button[type="submit"]:action {
     transform: translateY(0);
 }
 
+#reset-btn {
+    background: #50C878;
+    font-family: "Poppins",Arial;
+    border: #2d3436;
+    padding: 2px 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 6px;
+}
+
+#reset-btn:hover {
+    background-color: #f87171;
+}
+
 
 /*responsiveness*/
 @media(max-width: 900px) {

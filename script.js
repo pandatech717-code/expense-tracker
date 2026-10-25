@@ -5,10 +5,32 @@ const transactionListEl = document.getElementById("transaction-list");
 const transactionFormEl = document.getElementById("transaction-form");
 const descriptionEl = document.getElementById("description");
 const amountEl = document.getElementById("amount");
+const resetBtnEl = document.getElementById("reset-btn");
 
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 transactionFormEl.addEventListener("submit", addTransaction);
+
+resetBtnEl.addEventListener("click", () => {
+  if (!confirm("This will delete all transactions and reset everything to 0. Continue?")) return;
+
+  transactions = [];
+  localStorage.removeItem("transactions");
+
+  updateTransactionList();
+  updateSummary();
+  playUpdateAnimation();
+});
+
+function playUpdateAnimation() {
+  document
+    .querySelectorAll(".balance-container, #transaction-list")
+    .forEach((el) => {
+      el.classList.remove("fade-update");
+      void el.offsetWidth; // restarts the animation
+      el.classList.add("fade-update");
+    });
+}
 
 function addTransaction(e) {
   e.preventDefault();
@@ -88,7 +110,7 @@ function removeTransaction(id) {
   // filter out the one we wanted to delete
   transactions = transactions.filter((transaction) => transaction.id !== id);
 
-  localStorage.setItem("transcations", JSON.stringify(transactions));
+  localStorage.setItem("transactions", JSON.stringify(transactions));
 
   updateTransactionList();
   updateSummary();
