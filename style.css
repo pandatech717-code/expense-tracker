@@ -296,6 +296,19 @@ button[type="submit"]:action {
     background-color: #f87171;
 }
 
+.fade-update {
+    animation: fadeUpdate 0.35s ease;
+}
+@keyframes fadeUpdate {
+    from {
+        opacity: 0.2;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /*responsiveness*/
 @media(max-width: 900px) {
